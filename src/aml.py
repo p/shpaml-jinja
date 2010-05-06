@@ -33,7 +33,8 @@ aml.py is invoked from command line.
 # Aml works with unmodified shpaml but certain versions may be required
 # depending on shortcuts used since aml patches shpaml's code at runtime.
 # A version of shpaml that is known to work is bundled with aml.
-import shpaml, runtime
+import shpaml
+import runtime
 
 class IndentError(ValueError):
     ''' Raised when text given to aml uses tabs for indentation.
