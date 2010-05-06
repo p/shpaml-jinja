@@ -74,8 +74,11 @@ def perform_conversion(convert_func, forward_arguments=False, pass_input_name=Fa
         if input is None:
             input_text = sys.stdin.read()
         else:
-            with open(input) as f:
+            f = open(input)
+            try:
                 input_text = f.read()
+            finally:
+                f.close()
         
         if forward_arguments:
             output_text = convert_func(input_text, input=input, output=output)
@@ -87,5 +90,8 @@ def perform_conversion(convert_func, forward_arguments=False, pass_input_name=Fa
     if output is None:
         sys.stdout.write(output_text)
     else:
-        with open(output, 'w') as f:
+        f = open(output, 'w')
+        try:
             f.write(output_text)
+        finally:
+            f.close()
