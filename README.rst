@@ -169,3 +169,22 @@ and these two lines are also equivalent:
 
   % >block
   % > block
+
+Requirements
+============
+
+Shpaml requires Python 2.4 or better, and works under Python 3.1. [#shpaml-python-req]_
+
+Other Python scripts have been tested with Python 2.4 and Python 2.6.
+
+.. [#shpaml-python-req] http://mail.python.org/pipermail/python-announce-list/2009-December/008021.html
+
+License
+=======
+
+Shpaml is in public domain.
+
+Other scripts are licensed under the 2 clause BSD license.
+
+Please refer to LICENSE file in the source distribution for complete
+license text.
