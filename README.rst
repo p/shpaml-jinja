@@ -49,13 +49,17 @@ Usage
 
 Aml module can be imported into a Python program and used as follows:
 
-import aml
-jinja_template_text = aml.convert_text(aml_template_text)
+::
+
+  import aml
+  jinja_template_text = aml.convert_text(aml_template_text)
 
 Alternatively, aml.py can be invoked from the command line to perform
 the conversion, as follows:
 
-python aml.py [-o output] [input]
+::
+
+  python aml.py [-o output] [input]
 
 If input is not specified or is - (dash), standard input is read.
 If output is not specified or is -, processed text is written to
