@@ -33,16 +33,25 @@ def strip_modules(text, modules):
     text = use_re.sub(r'\2', text)
     return text
 
+def fix_convert_text_callers(text):
+    return re.sub(r'\b(\w+)\.convert_text\(', r'convert_text_\1(', text)
+
+def rename_convert_text(text, module):
+    return re.sub(r'\bconvert_text\b', 'convert_text_' + module, text)
+
 args = sys.argv[1:]
 sources = args[:-1]
 target = args[-1]
 
-merged_modules = [re.sub(r'\.py$', '', os.path.basename(path)) for path in sources[1:]]
+merged_module_names = {}
+for path in sources[1:]:
+    merged_module_names[path] = re.sub(r'\.py$', '', os.path.basename(path))
 
-text = file_utils.read_file(sources[0])
+text = fix_convert_text_callers(file_utils.read_file(sources[0]))
 for source in sources[1:]:
-    text += strip_main(file_utils.read_file(source))
-text = move_main(strip_modules(text, merged_modules))
+    print source
+    text += rename_convert_text(strip_main(file_utils.read_file(source)), merged_module_names[source])
+text = move_main(strip_modules(text, merged_module_names.values()))
 
 f = open(target, 'w')
 try:
