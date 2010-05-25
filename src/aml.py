@@ -335,7 +335,8 @@ def install_whitespace_removal():
                         copy.pop(0)
                         copy.pop(0)
                 elif isinstance(first, StartBlockTag):
-                    copy[0] = StartBlockTag(first + second)
+                    cls = second.__class__
+                    copy[0] = cls(first + second)
                     copy.pop(1)
                 else:
                     output.append(first)
