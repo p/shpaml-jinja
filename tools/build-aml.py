@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 
 import sys, os.path, re
-
-def read(source):
-    f = open(source)
-    try:
-        text = f.read()
-    finally:
-        f.close()
-    return text
+import file_utils
 
 main_re_text = r'if __name__ == ([\'"])__main__\1:(\n(\s+).*)+\n'
 main_re = re.compile(main_re_text)
@@ -46,9 +39,9 @@ target = args[-1]
 
 merged_modules = [re.sub(r'\.py$', '', os.path.basename(path)) for path in sources[1:]]
 
-text = read(sources[0])
+text = file_utils.read_file(sources[0])
 for source in sources[1:]:
-    text += strip_main(read(source))
+    text += strip_main(file_utils.read_file(source))
 text = move_main(strip_modules(text, merged_modules))
 
 f = open(target, 'w')
