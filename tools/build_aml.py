@@ -49,7 +49,6 @@ for path in sources[1:]:
 
 text = fix_convert_text_callers(file_utils.read_file(sources[0]))
 for source in sources[1:]:
-    print source
     text += rename_convert_text(strip_main(file_utils.read_file(source)), merged_module_names[source])
 text = move_main(strip_modules(text, merged_module_names.values()))
 
