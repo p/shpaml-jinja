@@ -35,7 +35,7 @@ def strip_modules(text, modules):
     modules = '('+'|'.join(kill_modules)+')'
     import_re = re.compile(r'^\s*import %s\n' % modules, re.M)
     text = import_re.sub('', text)
-    use_re = re.compile(r'%s\.(\w)' % modules)
+    use_re = re.compile(r'\b%s\.(\w)' % modules)
     text = use_re.sub(r'\2', text)
     return text
 
