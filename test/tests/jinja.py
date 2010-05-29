@@ -20,6 +20,9 @@ class TestAml(unittest.TestCase):
     
     def test_multiline_text(self):
         self.run_test('multiline-text')
+    
+    def test_conditional(self):
+        self.run_test('conditional')
 
 if __name__ == '__main__':
     unittest.main()
