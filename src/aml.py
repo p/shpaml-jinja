@@ -362,10 +362,6 @@ def install_whitespace_removal():
         
         _hooks_installed['whitespace_removal'] = True
 
-# This small hack is needed for single-file distribution, since shpaml
-# also defines a convert_text function.
-convert_text_aml = convert_text
-
 if __name__ == "__main__":
     import filter
-    filter.perform_conversion(convert_text_aml)
+    filter.perform_conversion(convert_text)
