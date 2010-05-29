@@ -14,8 +14,8 @@ def run_tests(source_dir):
     else:
         full_source_path = os.path.join(root, source_dir)
         sys.path.append(full_source_path)
-        import tests
-        unittest.main()
+        import tests.jinja
+        unittest.main(tests.jinja)
 
 run_tests('src')
 run_tests('build')

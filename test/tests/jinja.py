@@ -3,8 +3,9 @@ import aml
 import file_utils
 
 self_dir = os.path.dirname(__file__)
-input_dir = os.path.join(self_dir, 'fixtures', 'input')
-output_dir = os.path.join(self_dir, 'fixtures', 'output')
+fixtures_dir = os.path.join(self_dir, '..', 'fixtures', 'jinja')
+input_dir = os.path.join(fixtures_dir, 'input')
+output_dir = os.path.join(fixtures_dir, 'output')
 
 class TestAml(unittest.TestCase):
     def run_test(self, name):
