@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 
-import sys, os.path, re
+import sys, os.path, re, optparse
 import file_utils
+
+parser = optparse.OptionParser()
+parser.add_option('-o', '--output', help='Store output in FILE', metavar='FILE')
+parser.add_option('-m', '--main', help='Indicate module MODULE is main', metavar='MODULE')
+
+options, args = parser.parse_args()
 
 main_re_text = r'if __name__ == ([\'"])__main__\1:(\n(\s+).*)+\n'
 main_re = re.compile(main_re_text)
@@ -34,26 +40,41 @@ def strip_modules(text, modules):
     return text
 
 def fix_convert_text_callers(text):
-    return re.sub(r'\b(\w+)\.convert_text\(', r'convert_text_\1(', text)
+    return re.compile(r'\b(\w+)\.convert_text(\(|$)', re.M).sub(r'convert_text_\1\2', text)
 
 def rename_convert_text(text, module):
     return re.sub(r'\bconvert_text\b', 'convert_text_' + module, text)
 
-args = sys.argv[1:]
-sources = args[:-1]
-target = args[-1]
+sources = args
+if options.output:
+    target = options.output
+else:
+    target = None
 
-merged_module_names = {}
-for path in sources[1:]:
-    merged_module_names[path] = re.sub(r'\.py$', '', os.path.basename(path))
+module_names = {}
+for path in sources:
+    module_names[path] = re.sub(r'\.py$', '', os.path.basename(path))
 
-text = fix_convert_text_callers(file_utils.read_file(sources[0]))
-for source in sources[1:]:
-    text += rename_convert_text(strip_main(file_utils.read_file(source)), merged_module_names[source])
-text = move_main(strip_modules(text, merged_module_names.values()))
+if options.main:
+    main = options.main
+else:
+    main = module_names[sources[0]]
 
-f = open(target, 'w')
-try:
-    f.write(text)
-finally:
-    f.close()
+text = ''
+for source in sources:
+    module = module_names[source]
+    content = fix_convert_text_callers(file_utils.read_file(source))
+    if module == main:
+        text += content
+    else:
+        text += rename_convert_text(strip_main(content), module)
+text = move_main(strip_modules(text, module_names.values()))
+
+if target is None:
+    print text
+else:
+    f = open(target, 'w')
+    try:
+        f.write(text)
+    finally:
+        f.close()

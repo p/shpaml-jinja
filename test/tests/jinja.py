@@ -1,5 +1,6 @@
+import sys
 import os.path, unittest
-import aml
+import shpaml_jinja
 import file_utils
 
 self_dir = os.path.dirname(__file__)
@@ -10,7 +11,7 @@ output_dir = os.path.join(fixtures_dir, 'output')
 class TestAml(unittest.TestCase):
     def run_test(self, name):
         input = file_utils.read_file(os.path.join(input_dir, name + '.at'))
-        actual_output = aml.convert_text(input)
+        actual_output = shpaml_jinja.convert_text(input)
         expected_output = file_utils.read_file(os.path.join(output_dir, name + '.jt'))
         self.assertEqual(actual_output, expected_output)
     
