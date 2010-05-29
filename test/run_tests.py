@@ -16,6 +16,8 @@ def run_tests(source_dir):
         sys.path.append(full_source_path)
         import tests.jinja
         unittest.main(tests.jinja)
+        import tests.erb
+        unittest.main(tests.erb)
 
 run_tests('src')
 run_tests('build')

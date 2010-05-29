@@ -1,0 +1,4 @@
+% if instance.exists?
+  p | Instance exists
+% else
+  p | Instance does not exist
