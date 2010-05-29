@@ -1,5 +1,8 @@
 import re
+import shpaml
 import aml
+import runtime
+import whitespace_removal
 
 class JinjaShortcuts(aml.ShortcutsBase):
     LINE_STATEMENT = aml.fixup(r'^(\s*)%(\s*)(.*)$', re.M, r'\1{%\2\3\2%}')
@@ -71,9 +74,9 @@ class JinjaShortcuts(aml.ShortcutsBase):
             if shpaml.RAW_HTML.regex.match(tag):
                 match = TEMPLATE_STATEMENT.match(tag)
                 if match:
-                    append(prefix + TextWithoutWhitespace(tag))
+                    append(prefix + whitespace_removal.TextWithoutWhitespace(tag))
                     recurse(block[1:])
-                    append(prefix + TextWithoutWhitespace('{% end' + match.group(1) + ' %}'))
+                    append(prefix + whitespace_removal.TextWithoutWhitespace('{% end' + match.group(1) + ' %}'))
                     return
             html_block_tag_without_template_statement(output, block, recurse)
         

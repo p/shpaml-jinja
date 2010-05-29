@@ -58,6 +58,7 @@ def configure(template_engine, remove_whitespace=True):
     if configuration.configured:
         raise AlreadyConfiguredError
     
+    template_engine.install()
     configuration.active_shortcuts = template_engine
     
     if remove_whitespace:
