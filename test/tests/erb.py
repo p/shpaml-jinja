@@ -15,6 +15,9 @@ class TestAml(unittest.TestCase):
     
     def test_conditional(self):
         self.run_test('conditional')
+    
+    def test_loop(self):
+        self.run_test('loop')
 
 if __name__ == '__main__':
     unittest.main()
