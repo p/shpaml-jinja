@@ -55,7 +55,7 @@ class ErbShortcuts(aml.ShortcutsBase):
         5. '~ text' is equivalent to '{% trans %}text{% endtrans %}'
         '''
         
-        @shpaml.syntax(r'{% > *((\w+).*)')
+        @shpaml.syntax(r'<% > *((\w+).*)')
         def SELF_CLOSING_TEMPLATE_STATEMENT(m):
             tag = m.group(1).strip()
             return '<%% %s<%% end %%>' % (m.group(1))

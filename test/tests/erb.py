@@ -18,6 +18,9 @@ class TestAml(unittest.TestCase):
     
     def test_loop(self):
         self.run_test('loop')
+    
+    def test_self_closing_block(self):
+        self.run_test('self_closing_block')
 
 if __name__ == '__main__':
     unittest.main()
