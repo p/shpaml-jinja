@@ -23,6 +23,9 @@ class TestAml(unittest.TestCase):
     
     def test_conditional(self):
         self.run_test('conditional')
+    
+    def test_self_closing_tag(self):
+        self.run_test('self_closing_tag')
 
 if __name__ == '__main__':
     unittest.main()
