@@ -38,19 +38,17 @@ class ErbShortcuts(aml.ShortcutsBase):
         % else
             ...
         
-        2. '% tag' shortcut as a replacement for '<% tag %>', and corresponding
+        2. '% stmt' shortcut as a replacement for '<% stmt %>', and corresponding
            shpaml-style self-closing tag:
         
-        % block bar
+        % for post in @posts
             ...
         
-        % >block
+        % >content_for :foo do
         
         3. '>tag' is equivalent to '> tag'.
         
         4. '= expression' is equivalent to '<%= expression %>'
-        
-        5. '~ text' is equivalent to '{% trans %}text{% endtrans %}'
         '''
         
         @shpaml.syntax(r'<% > *((\w+).*)')
