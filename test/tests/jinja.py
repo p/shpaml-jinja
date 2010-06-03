@@ -16,10 +16,10 @@ class TestAml(unittest.TestCase):
         self.assertEqual(actual_output, expected_output)
     
     def test_singleline_text(self):
-        self.run_test('singleline-text')
+        self.run_test('singleline_text')
     
     def test_multiline_text(self):
-        self.run_test('multiline-text')
+        self.run_test('multiline_text')
     
     def test_conditional(self):
         self.run_test('conditional')
