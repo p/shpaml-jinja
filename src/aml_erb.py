@@ -10,13 +10,11 @@ class ErbShortcuts(aml.ShortcutsBase):
     SELF_CLOSING_TAG = aml.fixup(r'^(\s*)>(?=\w)', re.M, r'\1> ')
     END_ELSE = aml.fixup(r'^(\s*)<%\s*end\s*%>\n(\1<%\s*else\s*%>)', re.M, r'\2')
     END_ELSE_WITHOUT_WHITESPACE = aml.fixup(r'<%\s*end\s*%>\n(<%\s*else\s*%>)', None, r'\1')
-    TRANS_LINE_STATEMENT = aml.fixup(r'^(\s*)~(\s*)(.*)$', re.M, r'\1{% trans %}\3{% endtrans %}')
 
     PRE_TRANSLATORS = [
         LINE_STATEMENT,
         LINE_EXPRESSION,
         SELF_CLOSING_TAG,
-        TRANS_LINE_STATEMENT,
     ]
 
     POST_TRANSLATORS = [
