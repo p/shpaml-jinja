@@ -115,6 +115,14 @@ Other Python scripts have been tested with Python 2.4 and Python 2.6.
 
 .. [#shpaml-python-req] http://mail.python.org/pipermail/python-announce-list/2009-December/008021.html
 
+Running Tests
+=============
+
+::
+
+  make
+  python test/run_tests.py
+
 License
 =======
 
