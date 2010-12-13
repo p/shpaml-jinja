@@ -11,7 +11,7 @@ class TestAml(unittest.TestCase):
         input = file_utils.read_file(os.path.join(input_dir, name + '.erb.shpaml'))
         actual_output = aml_erb.convert_text(input)
         expected_output = file_utils.read_file(os.path.join(output_dir, name + '.erb'))
-        self.assertEqual(actual_output, expected_output)
+        self.assertEqual(expected_output, actual_output)
     
     def test_conditional(self):
         self.run_test('conditional')
