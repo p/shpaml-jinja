@@ -21,11 +21,26 @@ translates to:
     <%= target.name %>
   </a>
 
+Erubis preprocessed expressions
+-------------------------------
+
+`!= expression`` is translated to ``<%!= expression %>``. By default erubis
+uses [%= ... %] for preprocessed expressions, however shpaml does not handle
+[ specially when it begins a line thus erubis' pattern must be changed.
+
+`!! expression` may be used as an alternative to `!= expression`.
+
 Ruby constructs
 ---------------
 
 ``% keyword`` is translated to ``<% keyword %>``. Blocks will be closed by aml
-automatically. See the next section for an example.
+automatically. See the auto-closing blocks section for an example.
+
+Erubis preprocessed constucts
+-----------------------------
+
+``! keyword`` is translated to ``<%! keyword %>``. As with %, blocks will be
+closed by aml automatically. See the next section for an example.
 
 Auto-closing blocks
 -------------------

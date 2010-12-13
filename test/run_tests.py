@@ -18,5 +18,5 @@ def run_tests(source_dir, template):
         unittest.main(module)
 
 for source_dir in ('src', 'build'):
-    for template in ('jinja', 'erb'):
+    for template in ('jinja', 'erb', 'erubis'):
         run_tests(source_dir, template)
