@@ -120,6 +120,12 @@ Running Tests
 
 ::
 
+  make test
+
+or:
+
+::
+
   make
   python test/run_tests.py
 

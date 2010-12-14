@@ -13,9 +13,10 @@ build/aml_erb.py: $(SOURCES) src/aml_erb.py tools/build_aml.py
 build/aml_cat.py: $(SOURCES)
 	cat $(SOURCES) >$(.TARGET)
 
-test: build/aml.py build/aml_cat.py
+test: all
+	$(PYTHON) test/run_tests.py
 
 clean:
 	rm -f build/*.py
 
-.PHONY: clean
+.PHONY: all test clean
