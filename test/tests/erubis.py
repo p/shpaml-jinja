@@ -18,6 +18,9 @@ class TestAml(unittest.TestCase):
     
     def test_preprocessed_statement(self):
         self.run_test('preprocessed_statement')
+    
+    def test_preprocessed_if_else(self):
+        self.run_test('preprocessed_if_else')
 
 if __name__ == '__main__':
     unittest.main()
