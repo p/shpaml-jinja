@@ -24,6 +24,12 @@ class TestAml(unittest.TestCase):
     def test_conditional(self):
         self.run_test('conditional')
     
+    def test_elif(self):
+        self.run_test('elif')
+    
+    def test_elif_else(self):
+        self.run_test('elif_else')
+    
     def test_self_closing_tag(self):
         self.run_test('self_closing_tag')
 

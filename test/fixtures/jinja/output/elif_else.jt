@@ -1,0 +1,7 @@
+{% if foo %}
+bar
+{% elif foo1 %}
+bar1
+{% else %}
+quux
+{% endif %}

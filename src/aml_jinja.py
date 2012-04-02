@@ -8,10 +8,12 @@ class JinjaShortcuts(aml.ShortcutsBase):
     LINE_STATEMENT = aml.fixup(r'^(\s*)%(\s*)(.*)$', re.M, r'\1{%\2\3\2%}')
     LINE_EXPRESSION = aml.fixup(r'^(\s*)=(\s*)(.*)$', re.M, r'\1{{\2\3\2}}')
     SELF_CLOSING_TAG = aml.fixup(r'^(\s*)>(?=\w)', re.M, r'\1> ')
-    ENDIF_ELSE = aml.fixup(r'^(\s*){%\s*endif\s*%}\n(\1{%\s*else\s*%})', re.M, r'\2')
-    ENDIF_ELSE_WITHOUT_WHITESPACE = aml.fixup(r'{%\s*endif\s*%}\n({%\s*else\s*%})', None, r'\1')
-    ENDELSE = aml.fixup(r'^(\s*){%\s*endelse\s*%}', re.M, r'\1{% endif %}')
-    ENDELSE_WITHOUT_WHITESPACE = aml.fixup(r'{%\s*endelse\s*%}', None, r'{% endif %}')
+    ENDIF_ELIF = aml.fixup(r'^(\s*){%\s*endif\s*%}\n(\1{%\s*elif\s)', re.M, r'\2')
+    ENDIF_ELIF_WITHOUT_WHITESPACE = aml.fixup(r'{%\s*endif\s*%}\n({%\s*elif\s)', None, r'\1')
+    ENDIF_ELSE = aml.fixup(r'^(\s*){%\s*end(?:el)?if\s*%}\n(\1{%\s*else\s*%})', re.M, r'\2')
+    ENDIF_ELSE_WITHOUT_WHITESPACE = aml.fixup(r'{%\s*end(?:el)?if\s*%}\n({%\s*else\s*%})', None, r'\1')
+    ENDELSE = aml.fixup(r'^(\s*){%\s*endel(?:se|if)\s*%}', re.M, r'\1{% endif %}')
+    ENDELSE_WITHOUT_WHITESPACE = aml.fixup(r'{%\s*endel(?:se|if)\s*%}', None, r'{% endif %}')
     TRANS_LINE_STATEMENT = aml.fixup(r'^(\s*)~(\s*)(.*)$', re.M, r'\1{% trans %}\3{% endtrans %}')
 
     PRE_TRANSLATORS = [
@@ -22,11 +24,13 @@ class JinjaShortcuts(aml.ShortcutsBase):
     ]
 
     POST_TRANSLATORS = [
+        ENDIF_ELIF,
         ENDIF_ELSE,
         ENDELSE,
     ]
     
     POST_TRANSLATORS_WITHOUT_WHITESPACE = [
+        ENDIF_ELIF_WITHOUT_WHITESPACE,
         ENDIF_ELSE_WITHOUT_WHITESPACE,
         ENDELSE_WITHOUT_WHITESPACE,
     ]
