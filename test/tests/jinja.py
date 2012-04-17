@@ -32,6 +32,9 @@ class TestAml(unittest.TestCase):
     
     def test_self_closing_tag(self):
         self.run_test('self_closing_tag')
+    
+    def test_line_continuation(self):
+        self.run_test('line_continuation')
 
 if __name__ == '__main__':
     unittest.main()

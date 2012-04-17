@@ -105,6 +105,7 @@ class Configuration:
 configuration = Configuration()
 
 TAB_INDENT = re.compile(r'^ *\t', re.M)
+LINE_CONTINUATION = re.compile(r'\\$\n\s*', re.M)
 
 def fixup(regex, flags, replacement):
     if flags is not None:
@@ -129,6 +130,8 @@ class ShortcutsBase:
         
         if TAB_INDENT.search(text):
             raise IndentError('Text uses tabs for indentation')
+        
+        text = LINE_CONTINUATION.sub('', text)
         
         for translator in cls.PRE_TRANSLATORS:
             text = translator[0].sub(translator[1], text)

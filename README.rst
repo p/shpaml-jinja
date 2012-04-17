@@ -46,6 +46,17 @@ to it, but this syntax is not compatible with template engine shortcuts
 provided by aml. Aml therefore removes whitespace between block
 tags and their children.
 
+Line continuations
+------------------
+
+If a line ends with a backslash, the following line is appended
+to it and the backslash together with leading whitespace, if any,
+on the following line are removed.
+
+Note: whitespace before the backslash, if any, is preserved.
+
+This is implemented on aml level and thus works for all template engines.
+
 Usage
 =====
 
