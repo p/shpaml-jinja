@@ -33,6 +33,9 @@ class TestAml(unittest.TestCase):
     def test_multi_elif(self):
         self.run_test('multi_elif')
     
+    def test_multi_elif_else(self):
+        self.run_test('multi_elif_else')
+    
     def test_self_closing_tag(self):
         self.run_test('self_closing_tag')
     
