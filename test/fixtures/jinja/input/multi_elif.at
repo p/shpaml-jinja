@@ -1,0 +1,8 @@
+% if foo
+  bar
+% elif foo1
+  bar1
+% elif foo2
+  bar2
+% elif foo3
+  bar3
